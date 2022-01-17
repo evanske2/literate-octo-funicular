@@ -1,23 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import FanInformation from './FanInformation';
+import PageHeading from './PageHeading';
 
 function App() {
+
+  const BirbsTeam = {
+    id: 1,
+    name: 'Sports Birbs',
+    city: 'Marchmount',
+    stadium: {
+      name: 'Birbs Nest',
+      capacity: 50000
+    }
+  } 
+
+  const newBirbsTeam = {
+    id: 2,
+    name: 'Better Birbs',
+    city: 'Marchmount',
+    stadium: {
+      name: 'Birbs Roost',
+      capacity: 50001
+    }
+  }
+
+  const sportsTeams = [BirbsTeam, newBirbsTeam];
+
+  const followTeam = (name) => {
+    console.log(`You're following ${name}`);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <PageHeading>
+        <h1>All the sports teams</h1>
+        <h2>All the time</h2>
+      </PageHeading>
+      <div>
+        {
+          sportsTeams.map( (team, index) => {
+            return (
+              <FanInformation
+                key = {team.id}
+                teamName = {team.name}
+                number = {index}
+                city = {team.city}
+                stadium = {team.stadium}
+                followTeamFunction = {followTeam}
+              />
+            )
+          })
+        }
+      </div>
     </div>
   );
 }
